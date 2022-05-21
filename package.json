@@ -1,7 +1,7 @@
 {
   "name": "node-shared-module",
   "version": "1.0.0",
-  "description": "Example splitting module",
+  "description": "Tips and tricks how to create shared modules between service",
   "main": "index.js",
   "scripts": {
     "cleanup": "rimraf dist",
@@ -15,10 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "restuwahyu13"
+    "url": "https://github.com/restuwahyu13/node-shared-modules"
   },
   "keywords": [
-    "codesplitting"
+    "shared module",
+    "kafkajs",
+    "rabbitmq",
+    "nodejs",
+    "typescript",
+    "javascript"
   ],
   "author": "restuwahyu13",
   "license": "MIT",
