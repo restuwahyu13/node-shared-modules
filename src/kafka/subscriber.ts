@@ -3,8 +3,8 @@ import { Kafka, EachMessagePayload } from '@rebel/kafka'
 // subscriber demo here
 ;(async () => {
   const kafka: InstanceType<typeof Kafka> = new Kafka({
-    brokers: [`${process.env.KAFKA_BROKER_HOST}:${process.env.KAFKA_PORT}`],
-    clientId: process.env.KAFKA_CLIENTID,
+    brokers: [`${process.env.KAFKA_HOST}:${process.env.KAFKA_PORT}`],
+    clientId: process.env.KAFKA_CLIENT_ID,
     ssl: false
   })
 
