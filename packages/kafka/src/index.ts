@@ -61,8 +61,6 @@ class Kafka {
       options.type == 'single'
         ? await this.producer.send(options.sendConfig as ProducerRecord)
         : await this.producer.sendBatch(options.sendConfig as ProducerBatch)
-
-      await this.producer.disconnect()
     } catch (e: any) {
       console.error(`publisher is not working: ${e}`)
     }
@@ -81,7 +79,6 @@ class Kafka {
           : await this.producer.sendBatch(options.sendConfig as ProducerBatch)
 
         await this.transaction.commit()
-        await this.producer.disconnect()
       } catch (e: any) {
         if (this.transaction.isActive()) this.transaction.abort()
         console.error(`publisher transaction is not working: ${e}`)

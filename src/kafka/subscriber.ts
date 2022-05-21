@@ -11,10 +11,10 @@ import { Kafka, EachMessagePayload } from '@rebel/kafka'
 
   await kafka.subscriber(
     {
-      subscribeConfig: { topics: ['message:text:google'], fromBeginning: true },
+      subscribeConfig: { topics: ['message-text-google'], fromBeginning: true },
       consumerConfig: { groupId: 'kafka:group' },
       runConfig: { autoCommit: true }
     },
-    async (payload: EachMessagePayload): Promise<void> => console.log(payload.message)
+    async (payload: EachMessagePayload): Promise<void> => console.log(payload.message.value.toString())
   )
 })()

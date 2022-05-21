@@ -1,6 +1,5 @@
 import 'dotenv/config'
 import { Kafka } from '@rebel/kafka'
-import zlib from 'zlib'
 
 // publisher demo here
 ;(async () => {
@@ -15,10 +14,9 @@ import zlib from 'zlib'
     await kafka.publisher({
       type: 'single',
       sendConfig: {
-        topic: 'message:text:google',
+        topic: 'message-text-google',
         messages: [{ key: 'msg', value: `${i++} hello wordl from publisher:${new Date().getTime()}` }],
-        acks: 0,
-        compression: zlib.constants.Z_BEST_COMPRESSION
+        acks: 0
       },
       producerConfig: { allowAutoTopicCreation: false }
     })
