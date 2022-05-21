@@ -1,6 +1,6 @@
 # Node Shared Module
 
-Tips and tricks how to create shared modules between service
+Tips and tricks cara membuat shared modules untuk digunakan antar service.
 
 # Commands
 ```json
@@ -16,3 +16,13 @@ Tips and tricks how to create shared modules between service
     "rabbitmq:sub": "node ./dist/kafka/subscriber.js"
   }
 ```
+
+# Diference Topic And Queue Explained
+
+- **Queue**: konsep kerja dari queue yaitu jika ada data yang masuk dan setelah data tersebut di konsume, maka data tersebut akan langsung dihapus kemudian akan dilanjut dengan data yang berikutnya, tetapi jika publisher nya mati maka data akan di baca kembali sesuai dengan urutan yang terakhir di konsume, selama datanya masih ada didalam queue.
+
+- **Topic**: konsep kerja dari topic yaitu jika ada data yang masuk dan setelah data tersebut di konsume, maka data tersebut tidak akan langsung dihapus melainkan hanya dibaca saja kemudian akan dilanjut dengan data yang berikutnya, tetapi jika publisher nya mati maka data akan di baca kembali sesuai dengan urutan yang terakhir di konsume dan setelah selesai membaca data yang terakhir di konsume kemudian data akan dimulai dibaca kembali dari awal (offset 0).
+
+# Authors Tutorial
+
+**[Restu Wahyu Saputra](https://github.com/restuwahyu13)**
