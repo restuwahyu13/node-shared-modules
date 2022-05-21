@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"outDir": "dist",
+		"target": "ESNExt",
+		"moduleResolution": "Node",
+		"module": "CommonJS",
+		"esModuleInterop": true,
+		"downlevelIteration": true,
+		"importHelpers": true,
+		"sourceMap": true,
+		"skipLibCheck": true,
+		"allowUmdGlobalAccess": true,
+		"strict": true,
+		"alwaysStrict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"allowSyntheticDefaultImports": true,
+		"forceConsistentCasingInFileNames": false,
+		"strictNullChecks": false,
+		"noImplicitAny": false,
+		"noImplicitThis": false
+	},
+	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules/**", "dist/**"]
+}

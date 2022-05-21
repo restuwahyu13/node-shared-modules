@@ -1,0 +1,85 @@
+version: '3'
+services:
+  ###########################
+  # ZOOKEEPER SERVICES
+  ###########################
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    restart: unless-stopped
+    healthcheck:
+      start_period: 60s
+      timeout: 120s
+      interval: 30s
+      test: ifconfig | grep broadcast
+    environment:
+      - ZOOKEEPER_SERVER_ID=1
+      - ZOOKEEPER_CLIENT_PORT=2181
+      - ZOOKEEPER_TICK_TIMES=2000
+      - ZOOKEEPER_INIT_LIMIT=5
+      - ZOOKEEPER_SYNC_LIMIT=2
+    ports:
+      - 2181:2181
+    volumes:
+      - zk-data:/var/lib/zookeper/data
+    networks:
+      - node_networks
+  ###########################
+  # KAFKA SERVICES
+  ###########################
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    restart: unless-stopped
+    healthcheck:
+      start_period: 60s
+      timeout: 120s
+      interval: 30s
+      test: ifconfig | grep broadcast
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+      - KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+    ports:
+      - 9092:9092
+    volumes:
+      - kf-data:/var/lib/kafka/data
+    networks:
+      - node_networks
+    depends_on:
+      - zookeeper
+  ###########################
+  # RABBITMQ SERVICES
+  ###########################
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    restart: unless-stopped
+    healthcheck:
+      start_period: 60s
+      timeout: 120s
+      interval: 30s
+      test: ifconfig | grep broadcast
+    env_file: .env
+    environment:
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST}
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USERNAME}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD}
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq/data
+      - rabbitmq-data:/var/log/rabbitmq/log
+    networks:
+      - node_networks
+  #############################
+  # PERSISTENT DATA
+  #############################
+volumes:
+  zk-data: null
+  kf-data: null
+  rabbitmq-data: null
+    ################################
+    # SAME NETWORKS FOR ALL SERVICE
+    ###############################
+networks:
+  node_networks: null
