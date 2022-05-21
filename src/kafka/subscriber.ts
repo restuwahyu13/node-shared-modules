@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { Kafka, EachMessagePayload } from '@rebel/kafka'
 
 // subscriber demo here
