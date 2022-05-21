@@ -1,6 +1,6 @@
-# Node Shared Modules (On Progress)
-Tips and tricks how to create shared modules between service
+# Node Shared Module
 
+Tips and tricks how to create shared modules between service
 
 # Commands
 ```json
